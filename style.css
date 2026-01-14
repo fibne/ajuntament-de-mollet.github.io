@@ -1,0 +1,458 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #050000;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    cursor: url("./img/cursor.png"), auto;
+}
+
+/* Navbar Styles - Barra de navegación principal */
+.navbar {
+    background: linear-gradient(135deg, #ff071c 0%, #18f3bc 100%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    top: 0;
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    /* Altura mínima aumentada para navbar más gruesa */
+    min-height: 80px;
+}
+
+/* Contenedor de navegación - Alinea el logo y menú */
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 1rem;
+    height: 100%;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    display: flex;
+}
+
+/* Menú de navegación - Lista de links */
+.nav-menu {
+    /*para hacer un margen desde arriba de los links*/
+    margin-left: 30px;
+    margin-top: 30px;
+    display: flex;
+    list-style: none;
+    /* Espaciado responsive entre links */
+    gap: clamp(70px, 20px, 20px);
+    /* Altura igual a la navbar para mejor alineación */
+    height: 100%;
+}
+
+
+
+/* Enlaces de navegación - Links de la barra */
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    /* Font size responsive pero más compacto */
+    font-size: 13px;
+    white-space: nowrap;
+    /* Altura igual para que se adapte perfectamente */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #00ff73;
+    transform: translateY(-2px);
+}
+/*Animacion linea menu navegacion*/
+/*Despues del texto crea una linea que se extiende al pasar el mouse*/
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #0718ff;
+    transition: width 0.1s ease;
+}
+/*Animacion linea menu navegacion*/
+/*Al pasar el mouse se extiende la linea*/
+.nav-link:hover::after {
+    width: 100%;
+}
+/* Header - Espacio superior para que no tape la navbar fija */
+header {
+    width: 100%;
+    /* Padding ajustado a la nueva altura más gruesa de la navbar */
+    padding-top: 80px;
+}
+
+
+/* Responsive Diseño, mas pequeño */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    /*Ajuste del menu de navegacion en movil*/
+    .nav-menu {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+    /*Ajuste del logo en movil*/
+    .nav-logo-image {
+        width: 40px;
+        height: auto;
+    }
+}
+/* Logo de la navbar - Imagen del ayuntamiento */
+.nav-logo-image {
+    /* Tamaño responsive pero más compacto */
+    width: 50px;
+    height: 50px;
+    /* Margen derecho para separar del menú */
+    margin-right: 1rem;
+    /* Asegurar que no afecte la altura */
+    display: block;
+    object-fit: contain;
+}
+
+/*-----ANIMACION TITULOS SECCIONES-----*/
+/*Animacion de entrada desde la izquierda*/
+section h1:not(.feliz h1) {
+    text-align: center;
+    animation: slideInFromLeft 0.6s ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+    opacity: 0;
+}
+
+section h1 {
+    text-align: center;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    margin: 1rem 0;
+    padding: 0 1rem;
+}
+
+/*-----SECCION FELIZ mg-logo*/
+.feliz {
+    background-image: url(./img/ayuntamiento-fondo.jpg);
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: darken;
+    background-size: cover;
+    background-position: center;
+    padding: 2rem;
+}
+.feliz img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 2rem auto 0;
+    width: clamp(200px, 60vw, 500px);
+} 
+
+/*Animacion texto feliz navidad*/
+.feliz h1 {
+    font-size: clamp(2rem, 8vw, 100px);
+    font-family: "Noto Sans", sans-serif;
+    background-image: url(./img/fondo-navidad.webp);
+    background-size: cover;
+    background-clip: text;
+    color: transparent;
+    animation: animate 20s linear infinite;
+    line-height: 1.2;
+    padding: 1rem 0;
+}
+@keyframes animate {
+    to {
+        background-position-x: 500px;
+    }
+}
+
+/*Animacion de entrada desde la izquierda*/
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*------ESTILO SECCION NOTICIAS*/
+.noticias{
+  width: min(90%, 1200px);
+  margin: 2rem auto;
+  font-family: Arial;
+  padding: 0 1rem;
+}
+
+.contenedor-noticias{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+/*Estilo de las tarjetas de noticias*/
+/*Tiene la animacion de la izquierda*/
+.tarjeta{
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,.1);
+  transition: transform .2s;
+  animation: slideInFromLeft 0.6s ease-out forwards;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
+  opacity: 0;
+}
+/*Efecto que se levanta la tarjeta al pasar el mouse */
+.tarjeta:hover{
+  transform: translateY(-5px);
+}
+
+.tarjeta img{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.contenido{
+  padding: 15px;
+}
+
+.contenido h3{
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  margin-bottom: 8px;
+}
+
+.fecha{
+  color: gray;
+  font-size: 14px;
+}
+
+/*ESTILOS PROXIMOS EVENTS*/
+.contenedor-eventos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(15px, 3vw, 25px);
+    width: min(90%, 1200px);
+    margin: 2rem auto;
+    padding: 0 1rem;
+    margin-bottom: 50px;
+}
+
+/*Estilo de las tarjetas de eventos*/
+/*Tiene la animacion de la izquierda*/
+.tarjeta-evento {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    animation: slideInFromLeft 0.6s ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+    opacity: 0;
+}
+.tarjeta-evento:hover {
+    transform: translateY(-5px);
+}
+.tarjeta-evento img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+/*ARTICULO EDU MEDIAMBIENTAL*/
+.edu {
+    transition: transform .2s;
+    animation: slideInFromLeft 0.6s ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+    opacity: 0;
+}
+.edu h1 {
+    text-align: center;
+    color: #ff0707;
+    margin: 2rem 0 0.5rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    padding: 0 1rem;
+}
+.edu h2 {
+    animation: slideInFromLeft 0.6s ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+    opacity: 0;
+}
+.edu p {
+    animation: slideInFromLeft 0.6s ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+    opacity: 0;
+}
+.edu img {
+    display: block;
+    margin: 1rem auto;
+    width: clamp(300px, 60vw, 600px);
+    height: auto;
+    animation: slideInFromLeft 0.6s ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+    opacity: 0;
+}
+
+/* ESTILOS TABLA - Tabla de beneficios educación ambiental */
+.edu table {
+    /* Margen superior e inferior y centrado horizontal */
+    margin: 2rem auto;
+    /* Unir bordes de celdas para una apariencia más limpia */
+    border-collapse: collapse;
+    /* Ancho completo del contenedor */
+    width: 100%;
+    /* Ancho máximo para que no sea muy grande en pantallas grandes */
+    max-width: 900px;
+    /* Sombra sutil alrededor de la tabla */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Esquinas redondeadas */
+    border-radius: 8px;
+    /* Ocultar contenido que sobresalga de las esquinas redondeadas */
+    overflow: hidden;
+}
+
+/* Encabezados de la tabla - Fila de títulos */
+.edu table th {
+    /* Gradiente que combina con el color de la navbar (rojo a turquesa) */
+    background: linear-gradient(135deg, #36f706 0%, #18d2f3 100%);
+    /* Texto blanco para contraste */
+    color: white;
+    /* Espaciado interno */
+    padding: 1.2rem;
+    /* Alinear texto a la izquierda */
+    text-align: left;
+    /* Texto más grueso */
+    font-weight: 600;
+    /* Tamaño responsive del texto */
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+/* Celdas de datos de la tabla */
+.edu table td {
+    /* Espaciado interno de celdas */
+    padding: 1rem 1.2rem;
+    /* Línea divisoria entre filas */
+    border-bottom: 1px solid #e0e0e0;
+    /* Tamaño responsive del texto */
+    font-size: clamp(0.85rem, 1.8vw, 1rem);
+    /* Color del texto */
+    color: #333;
+}
+
+/* Última fila - Sin línea inferior */
+.edu table tr:last-child td {
+    /* Quitar el borde de la última fila */
+    border-bottom: none;
+}
+
+/* Filas alternas - Efecto zebra para mejor legibilidad */
+.edu table tr:nth-child(even) {
+    /* Fondo gris claro en filas pares */
+    background-color: #f8f8f8;
+}
+
+/* Efecto hover - Al pasar el mouse sobre una fila */
+.edu table tr:hover {
+    /* Cambiar a un gris más oscuro */
+    background-color: #f0f0f0;
+    /* Transición suave de color */
+    transition: background-color 0.2s ease;
+}
+/*--------------ESTILOS PARA PAGINA GALERIA------------------*/
+
+.galeria {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+.titulo-galeria h1 {
+    margin-top: 7%;
+    text-align: center;
+}
+.galeria img {
+    place-content: center;
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 40px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.galeria img:hover {
+    transform: scale(1.2);
+}
+
+.galeria body {
+    place-content: center;
+    gap: 10px
+}
+/*Animamos las imágenes de la galeria creando una animación de aparición*/
+@keyframes show{
+    from{
+        opacity: 0; scale:10%;
+    }
+    to {
+        opacity: 1; scale:100%;
+    }
+}
+
+/*Aplicamos la animación a las imágenes de la galería*/
+.galeria img {
+    view-timeline-name: --reveal;
+    animation-name: show;
+    animation-fill-mode: both;
+
+    animation-timeline: --reveal;
+    animation-range: entry 25% cover 50%;
+}
+
+.contacte h1 {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.contacte h3 {
+    text-align: cent;
+    margin-top: 2%;
+    margin-right: 20%;
+    margin-left: 20%;
+}
+
+.imgup {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+ 
